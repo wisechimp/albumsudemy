@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Linking } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
+import Button from './Button';
 
 //This Text in the Card gets inserted into props.children in the Card.js
 const AlbumDetail = ({ album }) => {
@@ -9,7 +10,8 @@ const AlbumDetail = ({ album }) => {
     title,
     artist,
     image,
-    thumbnail_image
+    thumbnail_image,
+    url
   } = album;
   const {
     thumbnailStyle,
@@ -32,11 +34,18 @@ const AlbumDetail = ({ album }) => {
           <Text>{artist}</Text>
         </View>
       </CardSection>
+
       <CardSection>
         <Image
           style={imageStyle}
           source={{ uri: image }}
         />
+      </CardSection>
+
+      <CardSection>
+        <Button whenPressed={() => Linking.openURL(url)}>
+          Buy Now
+        </Button>
       </CardSection>
     </Card>
   );
